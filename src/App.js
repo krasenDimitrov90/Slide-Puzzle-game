@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
+import { useSpring, animated } from '@react-spring/web';
+
+
+import Demo from './Demo';
+import Board from './components/Board/Board';
+import WinGame from './components/Board/WinGame';
+
+const App = () => {
+
+  const [win, setWin] = React.useState(false);
+
+  const setWinHandler = () => {
+    setWin(true);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {/* <Demo /> */}
+      {win 
+        ? <WinGame />
+        : <Board setWinHandler={setWinHandler}/>}
+      
     </div>
   );
 }

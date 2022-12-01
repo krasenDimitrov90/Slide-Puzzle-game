@@ -1,0 +1,33 @@
+.board {
+    width: 360px;
+    display: flex;
+    flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.row > div {
+    border: 1px solid gray;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row > div:hover {
+    cursor: pointer;
+}
+
+div.block {
+    background-color: pink;
+}
+
+div.empty {
+    color: #0C8CAF;;
+    background-color: #0C8CAF;
+    border: #0b6eb1;
+}
