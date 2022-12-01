@@ -33,6 +33,10 @@ function Board(props) {
     const [slides, setSlides] = React.useState(shuffled);
     const [coordinates, setCoordinates] = React.useState(initialCoordinates);
 
+    let correctMove = null;
+
+    console.log('in Board');
+
     function moveSlideHandler(id) {
         let blockToMoveCoordinates = coordinates[id];
         let x = Number(blockToMoveCoordinates[0]);
@@ -44,6 +48,10 @@ function Board(props) {
             moveUpCoordinates: `${x - 1}-${y}`,
             moveDownCoordinates: `${x + 1}-${y}`,
         }
+
+        correctMove = (
+            Object.keys(moveCoordinates).find(m => moveCoordinates[m] === coordinates['empty']) 
+        );
 
         if (Object.values(moveCoordinates).some(c => c === coordinates['empty'])) {
             let newBlockCoordinates = coordinates['empty'];
@@ -78,9 +86,11 @@ function Board(props) {
             <div className='row'>
                 {slides.map((slide, idx) =>
                     <Slide
-                        key={slide + 1 + idx}
+                        key={slide}
                         id={slide}
                         value={slide}
+                        index={idx}
+                        correctMove={correctMove}
                         moveSlideHandler={moveSlideHandler}
                     />)
                 }
