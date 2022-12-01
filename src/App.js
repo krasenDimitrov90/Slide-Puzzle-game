@@ -3,7 +3,6 @@ import React from 'react';
 import { useSpring, animated } from '@react-spring/web';
 
 
-import Demo from './Demo';
 import Board from './components/Board/Board';
 import WinGame from './components/Board/WinGame';
 
@@ -16,13 +15,15 @@ const App = () => {
   }
 
   return (
-    <div>
+    <>
       {/* <Demo /> */}
-      {win 
+      {/* {<WinGame />} */}
+      {win
         ? <WinGame />
-        : <Board setWinHandler={setWinHandler}/>}
-      
-    </div>
+        : <Board setWinHandler={setWinHandler}
+        />
+      }
+    </>
   );
 }
 

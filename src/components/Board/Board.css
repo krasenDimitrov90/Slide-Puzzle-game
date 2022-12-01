@@ -27,7 +27,7 @@ div.block {
 }
 
 div.empty {
-    color: #0C8CAF;;
-    background-color: #0C8CAF;
+    color: none;
+    background-color: none;
     border: #0b6eb1;
 }
