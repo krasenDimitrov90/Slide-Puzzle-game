@@ -11,7 +11,7 @@ class Slide extends React.Component {
     super(props);
     this.state = {
       styles: initialStyles,
-      isEmpty: this.props.value === 'empty',
+      isEmpty: this.props.value === 0,
     }
   }
 
@@ -24,9 +24,9 @@ class Slide extends React.Component {
   }
 
   render() {
-    console.log('in Class', this.state.isEmpty);
+    // console.log('in Class', this.state.isEmpty);
     let styleSheet = document.styleSheets[0];
-    console.log(styleSheet);
+    // console.log(styleSheet);
     return (
       <div
         onClick={() => this.props.moveSlideHandler(this.props.id)}
