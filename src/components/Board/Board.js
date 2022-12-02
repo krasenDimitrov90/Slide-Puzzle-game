@@ -2,13 +2,13 @@ import React from 'react';
 
 import './Board.css';
 import Slide from './Slide';
-import WinGame from './WinGame';
 
 const rightOrder = '12345678empty';
 
 const initialSlides = [
-    '1', '2', '3', '4',
-    '5', '6', '7', '8', 'empty',
+    '1', '2', '3',
+    '4', '5', '6',
+    '7', '8', 'empty',
 ];
 
 const shuffled = initialSlides
@@ -27,6 +27,17 @@ for (let row = 0; row < 3; row++) {
     }
 }
 
+const moveCoordinates = {};
+
+function canMakeAMove(moveCoordinates, currentCoordinates, x, y) {
+    moveCoordinates.moveLeftCoordinates = `${x}-${y - 1}`;
+    moveCoordinates.moveRightCoordinates = `${x}-${y + 1}`;
+    moveCoordinates.moveUpCoordinates = `${x - 1}-${y}`;
+    moveCoordinates.moveDownCoordinates = `${x + 1}-${y}`;
+
+    return Object.values(moveCoordinates).some(c => c === currentCoordinates['empty']);
+}
+
 
 function Board(props) {
 
@@ -42,18 +53,9 @@ function Board(props) {
         let x = Number(blockToMoveCoordinates[0]);
         let y = Number(blockToMoveCoordinates[2]);
 
-        let moveCoordinates = {
-            moveLeftCoordinates: `${x}-${y - 1}`,
-            moveRightCoordinates: `${x}-${y + 1}`,
-            moveUpCoordinates: `${x - 1}-${y}`,
-            moveDownCoordinates: `${x + 1}-${y}`,
-        }
+        let canMove = canMakeAMove(moveCoordinates, coordinates, x, y);
 
-        correctMove = (
-            Object.keys(moveCoordinates).find(m => moveCoordinates[m] === coordinates['empty']) 
-        );
-
-        if (Object.values(moveCoordinates).some(c => c === coordinates['empty'])) {
+        if (canMove) {
             let newBlockCoordinates = coordinates['empty'];
             let newEmptyBlockCoordinates = blockToMoveCoordinates;
 

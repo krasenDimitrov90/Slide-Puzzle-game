@@ -1,8 +1,5 @@
 import React from 'react';
 
-import { useSpring, animated } from '@react-spring/web';
-
-
 import Board from './components/Board/Board';
 import WinGame from './components/Board/WinGame';
 
