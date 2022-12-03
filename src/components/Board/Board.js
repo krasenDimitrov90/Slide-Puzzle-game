@@ -4,6 +4,8 @@ import './Board.css';
 import Tile from './Tile';
 import Puzzle from '../../game-logic/puzzle';
 
+import { canMakeAMove, rearrangedThePuzzle, checkIsPuzzlsSolved } from '../../game-logic/helpers';
+
 // const rightOrder = '123456780';
 
 const tiles = [
@@ -12,38 +14,16 @@ const tiles = [
     7, 8, 0,
 ];
 
-const shuffled = new Puzzle(tiles)
-console.log(shuffled.checkIsSolveble());
+const puzzle = new Puzzle(tiles)
+console.log(puzzle.checkIsSolveble());
 
-
-function rearrangedThePuzzle(oldPuzzleForm, id) {
-    let newPuzzle = [...oldPuzzleForm];
-    let blockIndex = newPuzzle.findIndex(x => x === id);
-    let emptyIndex = newPuzzle.findIndex(x => x === 0);
-    [newPuzzle[blockIndex], newPuzzle[emptyIndex]] = [newPuzzle[emptyIndex], newPuzzle[blockIndex]];
-
-    return newPuzzle;
-}
 
 const moveCoordinates = {};
 
-function canMakeAMove(moveCoordinates, currentCoordinates, x, y) {
-    moveCoordinates.moveLeftCoordinates = `${x}-${y - 1}`;
-    moveCoordinates.moveRightCoordinates = `${x}-${y + 1}`;
-    moveCoordinates.moveUpCoordinates = `${x - 1}-${y}`;
-    moveCoordinates.moveDownCoordinates = `${x + 1}-${y}`;
-
-    return Object.values(moveCoordinates).some(c => c === currentCoordinates[0]);
-}
-
-function checkIsPuzzleSolved(puzzle, rightOrder = '123456780') {
-    return puzzle.join('') === rightOrder;
-}
-
 function Board(props) {
 
-    const [puzzle, setPuzzle] = React.useState(shuffled.puzzleForm);
-    const [coordinates, setCoordinates] = React.useState(shuffled.coordinates);
+    const [puzzleBoard, setPuzzleBoard] = React.useState(puzzle.puzzleForm);
+    const [coordinates, setCoordinates] = React.useState(puzzle.coordinates);
 
     function moveTileHandler(id) {
         let blockToMoveCoordinates = coordinates[id];
@@ -65,12 +45,12 @@ function Board(props) {
                 return newCoordinates;
             });
 
-            let newPuzzleForm = rearrangedThePuzzle(puzzle, id);
+            let newPuzzleForm = rearrangedThePuzzle(puzzleBoard, id);
 
-            if (checkIsPuzzleSolved(newPuzzleForm)) {
+            if (checkIsPuzzlsSolved(newPuzzleForm)) {
                 props.setWinHandler();
             } else {
-                setPuzzle((oldPuzzle) => {
+                setPuzzleBoard((oldPuzzle) => {
                     return newPuzzleForm;
                 });
             }
@@ -80,7 +60,7 @@ function Board(props) {
     return (
         <div className='board'>
             <div className='row'>
-                {puzzle.map((tile, idx) =>
+                {puzzleBoard.map((tile, idx) =>
                     <Tile
                         key={tile}
                         id={tile}

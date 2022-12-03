@@ -46,11 +46,3 @@ export default class Puzzle {
         }
     }
 }
-
-const initialSlides = [
-    1, 2, 3,
-    4, 5, 6,
-    7, 8, 0,
-];
-
-const Slide = new Puzzle(initialSlides);
