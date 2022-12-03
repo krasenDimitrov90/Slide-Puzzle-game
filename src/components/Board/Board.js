@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navigate, Link } from 'react-router-dom';
 
 import './Board.css';
 import Tile from '../Tile/Tile';
@@ -7,7 +8,6 @@ import Button from '../Button/Button';
 
 import { canMakeAMove, rearrangedThePuzzle, checkIsPuzzlsSolved } from '../../game-logic/helpers';
 
-// const rightOrder = '123456780';
 
 const rightOrder = {
     easy: '123456780',
@@ -22,15 +22,11 @@ function Board(props) {
 
     const [puzzleBoard, setPuzzleBoard] = React.useState(props.puzzle.puzzleForm);
     const [coordinates, setCoordinates] = React.useState(props.puzzle.coordinates);
+    const [win, setWin] = React.useState(false);
 
     const resetBtnHandler = () => {
         setPuzzleBoard(props.puzzle.puzzleForm);
         setCoordinates(props.puzzle.coordinates);
-    }
-
-    const changeLevelHandler = () => {
-        props.preparePuzzleHandler({});
-        props.setDifficultyHandler('');
     }
 
 
@@ -42,7 +38,7 @@ function Board(props) {
         let canMove = canMakeAMove(moveCoordinates, coordinates, x, y);
 
         if (canMove) {
-            let newBlockCoordinates = coordinates[0];
+            let newBlockCoordinates = coordinates[0]; // this is the coordinates of the empty block ( 0 )
             let newEmptyBlockCoordinates = blockToMoveCoordinates;
 
             setCoordinates((oldCoordinates) => {
@@ -57,8 +53,7 @@ function Board(props) {
             let newPuzzleForm = rearrangedThePuzzle(puzzleBoard, id);
 
             if (checkIsPuzzlsSolved(newPuzzleForm, rightOrder[props.difficulty])) {
-                props.setWinHandler(true);
-                props.preparePuzzleHandler({}); // is for reseting the puzzle
+                setWin(true);
             } else {
                 setPuzzleBoard((oldPuzzle) => {
                     return newPuzzleForm;
@@ -71,7 +66,9 @@ function Board(props) {
         <>
             <div className='board'>
                 <div className='row'>
-                    {puzzleBoard.map((tile, idx) =>
+                    {win 
+                        ? <Navigate to="/win-game" />
+                        : puzzleBoard.map((tile, idx) =>
                         <Tile
                             key={tile}
                             id={tile}
@@ -81,12 +78,11 @@ function Board(props) {
                             moveTileHandler={moveTileHandler}
                         />)
                     }
-
                 </div>
             </div>
             <div className='buttons' >
                 <Button className="reset-btn" onClick={resetBtnHandler} >Reset</Button>
-                <Button className="change-level-btn" onClick={changeLevelHandler} >Change level</Button>
+                <Link to="/" className="change-level-btn" >Change level</Link>
             </div>
         </>
     );

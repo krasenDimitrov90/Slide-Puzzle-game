@@ -21,6 +21,9 @@
     border-radius: 5px;
     border: none;
     box-shadow: 1px 1px 7px black;
+    text-decoration: none;
+    text-align: center;
+    color: black;
 }
 
 .reset-btn {

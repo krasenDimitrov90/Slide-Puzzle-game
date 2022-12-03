@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 
 import './Difficlulty.css';
 import Puzzle from "../../game-logic/puzzle";
@@ -40,9 +41,9 @@ function Difficlulty({ preparePuzzleHandler, setDifficultyHandler }) {
 
     return (
         <div className="difficulty-btns">
-            <Button className="difficulty-btn" onClick={onClickHandler} >EASY</Button>
-            <Button className="difficulty-btn" onClick={onClickHandler} >MEDIUM</Button>
-            <Button className="difficulty-btn" onClick={onClickHandler} >HARD</Button>
+            <Link to='/board' className="difficulty-btn" onClick={onClickHandler} >EASY</Link>
+            <Link to='/board' className="difficulty-btn" onClick={onClickHandler} >MEDIUM</Link>
+            <Link to='/board' className="difficulty-btn" onClick={onClickHandler} >HARD</Link>
         </div>
     );
 }

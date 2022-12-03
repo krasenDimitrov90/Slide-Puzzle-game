@@ -1,4 +1,5 @@
 import React from "react";
+import {Link} from 'react-router-dom';
 
 import './WinGame.css';
 import Button from "../Button/Button";
@@ -13,7 +14,7 @@ function WinGame(props) {
     return (
         <div className="win-game">
             <h2 style={{ 'fontSize': '50px' }} >Congrats!</h2>
-            <Button onClick={clickHandler} className="play-again-btn" >Play again</Button>
+            <Link to="/" onClick={clickHandler} className="play-again-btn" >Play again</Link>
         </div>
     );
 }

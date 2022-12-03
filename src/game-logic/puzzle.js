@@ -28,6 +28,8 @@ export default class Puzzle {
     }
 
     checkIsSolveble() {
+
+        // this algorithm is from - https://datawookie.dev/blog/2019/04/sliding-puzzle-solvable/
         let count = 0;
 
         let tilesCount = this.puzzleForm.length;

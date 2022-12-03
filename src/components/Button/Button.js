@@ -1,10 +1,13 @@
+import { Link } from 'react-router-dom';
+
 function Button(props) {
 
     return (
-        <button
+        <Link 
+            to={props.path}
             className={props.className || ''}
             onClick={props.onClick} >{props.children}
-        </button>
+        </Link>
     );
 }
 

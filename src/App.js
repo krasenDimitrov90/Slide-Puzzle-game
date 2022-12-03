@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import Difficlulty from './components/Difficlulty/Difficlulty';
 import Board from './components/Board/Board';
@@ -25,15 +26,43 @@ const App = () => {
     const isPuzzleSet = Object.keys(puzzle).length > 0;
 
     return (
-        <>
-            {difficulty === '' &&
+        <BrowserRouter>
+            <Routes>
+                <Route path='/'
+                    element={< Difficlulty
+                        setDifficultyHandler={setDifficultyHandler}
+                         preparePuzzleHandler={preparePuzzleHandler}
+                    />}
+                >
+
+                </Route>
+                <Route path='/board'
+                    element={< Board
+                        puzzle={puzzle}
+                        difficulty={difficulty}
+                        setWinHandler={setWinHandler}
+                        setDifficultyHandler={setDifficultyHandler}
+                        preparePuzzleHandler={preparePuzzleHandler}
+                    />}
+                >
+
+                </Route>
+                <Route path='/win-game'
+                    element={< WinGame
+                        setWinHandler={setWinHandler}
+                        setDifficultyHandler={setDifficultyHandler}
+                    />}
+                >
+
+                </Route>
+                {/* {difficulty === '' &&
                 <Difficlulty
                     preparePuzzleHandler={preparePuzzleHandler}
                     setDifficultyHandler={setDifficultyHandler}
                 />
             }
             {isPuzzleSet &&
-                <Board 
+                <Board
                     puzzle={puzzle}
                     difficulty={difficulty}
                     setWinHandler={setWinHandler}
@@ -41,12 +70,13 @@ const App = () => {
                     preparePuzzleHandler={preparePuzzleHandler}
                 />
             }
-            {win && 
-            <WinGame 
-                setWinHandler={setWinHandler}
-                setDifficultyHandler={setDifficultyHandler}
-            />}
-        </>
+            {win &&
+                <WinGame
+                    setWinHandler={setWinHandler}
+                    setDifficultyHandler={setDifficultyHandler}
+                />} */}
+            </Routes>
+        </BrowserRouter>
     );
 }
 

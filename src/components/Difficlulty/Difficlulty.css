@@ -10,6 +10,9 @@
     flex: 1;
     border: none;
     box-shadow: 1px 1px 7px black;
+    text-decoration: none;
+    text-align: center;
+    color: black;
 }
 
 .difficulty-btn:hover {

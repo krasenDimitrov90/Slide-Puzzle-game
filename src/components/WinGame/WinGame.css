@@ -11,7 +11,12 @@
     flex: 1;
     border: none;
     box-shadow: 1px 1px 7px black;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    padding: 5px;
 }
+
 
 .play-again-btn:hover {
     cursor: pointer;
