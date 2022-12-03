@@ -5,23 +5,23 @@ import WinGame from './components/Board/WinGame';
 
 const App = () => {
 
-  const [win, setWin] = React.useState(false);
+    const [win, setWin] = React.useState(false);
 
-  const setWinHandler = () => {
-    setWin(true);
-  }
+    const setWinHandler = () => {
+        setWin(true);
+    }
 
-  return (
-    <>
-      {/* <Demo /> */}
-      {/* {<WinGame />} */}
-      {win
-        ? <WinGame />
-        : <Board setWinHandler={setWinHandler}
-        />
-      }
-    </>
-  );
+    return (
+        <>
+            {/* <Demo /> */}
+            {/* {<WinGame />} */}
+            {win
+                ? <WinGame />
+                : <Board setWinHandler={setWinHandler}
+                />
+            }
+        </>
+    );
 }
 
 export default App;
