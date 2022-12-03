@@ -1,18 +1,18 @@
 import React from 'react';
 
-import Home from './components/Home/Home';
+import Difficlulty from './components/Difficlulty/Difficlulty';
 import Board from './components/Board/Board';
-import WinGame from './components/Board/WinGame';
+import WinGame from './components/WinGame/WinGame';
 
 const App = () => {
 
     const [puzzle, setPuzzle] = React.useState({});
     const [difficulty, setDifficulty] = React.useState('');
+    const [win, setWin] = React.useState(false);
 
-
-    // const setWinHandler = () => {
-    //     setWin(true);
-    // }
+    const setWinHandler = (condition) => {
+        setWin(condition);
+    }
 
     const preparePuzzleHandler = (puzzle) => {
         setPuzzle(puzzle);
@@ -26,17 +26,26 @@ const App = () => {
 
     return (
         <>
-            {!isPuzzleSet &&
-                <Home
+            {difficulty === '' &&
+                <Difficlulty
                     preparePuzzleHandler={preparePuzzleHandler}
                     setDifficultyHandler={setDifficultyHandler}
                 />
             }
             {isPuzzleSet &&
-                <Board puzzle={puzzle}
+                <Board 
+                    puzzle={puzzle}
                     difficulty={difficulty}
+                    setWinHandler={setWinHandler}
+                    setDifficultyHandler={setDifficultyHandler}
+                    preparePuzzleHandler={preparePuzzleHandler}
                 />
             }
+            {win && 
+            <WinGame 
+                setWinHandler={setWinHandler}
+                setDifficultyHandler={setDifficultyHandler}
+            />}
         </>
     );
 }

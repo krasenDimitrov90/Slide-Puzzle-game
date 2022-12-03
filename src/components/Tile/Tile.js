@@ -1,5 +1,7 @@
 import React from "react";
 
+import './Tile.css';
+
 const styles = {
     easy: {
         width: '120px',
@@ -21,6 +23,7 @@ class Tile extends React.Component {
         super(props);
         this.state = {
             isEmpty: this.props.value === 0,
+            classes: '',
         }
     }
 
@@ -32,12 +35,16 @@ class Tile extends React.Component {
         return false;
     }
 
+    prepareClasses() {
+
+    }
+
     render() {
         return (
-            <div 
+            <div
                 style={styles[this.props.difficulty]}
                 onClick={() => this.props.moveTileHandler(this.props.id)}
-                className={this.state.isEmpty ? 'empty' : 'block'}
+                className={this.state.isEmpty ? 'tile empty' : 'tile block'}
             >
                 {this.state.isEmpty ? '' : this.props.value}
             </div>

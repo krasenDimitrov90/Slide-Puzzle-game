@@ -1,0 +1,22 @@
+.tile {
+    border: 1px solid gray;
+    width: 120px;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tile:hover {
+    cursor: pointer;
+}
+
+.tile.block {
+    background-color: rgb(243, 170, 239);
+}
+
+.tile.empty {
+    color: none;
+    background-color: none;
+    border: #0b6eb1;
+}

@@ -1,7 +1,8 @@
 import React from "react";
 
-import './Home.css';
+import './Difficlulty.css';
 import Puzzle from "../../game-logic/puzzle";
+import Button from "../Button/Button";
 
 const tiles = {
     easy: [
@@ -26,7 +27,7 @@ const tiles = {
     ],
 }
 
-function Home({ preparePuzzleHandler, setDifficultyHandler }) {
+function Difficlulty({ preparePuzzleHandler, setDifficultyHandler }) {
 
     const onClickHandler = (e) => {
         const difficulty = e.target.textContent.toLowerCase();
@@ -39,11 +40,11 @@ function Home({ preparePuzzleHandler, setDifficultyHandler }) {
 
     return (
         <div className="difficulty-btns">
-            <button className="difficulty-btn" onClick={onClickHandler} >EASY</button>
-            <button className="difficulty-btn" onClick={onClickHandler} >MEDIUM</button>
-            <button className="difficulty-btn" onClick={onClickHandler} >HARD</button>
+            <Button className="difficulty-btn" onClick={onClickHandler} >EASY</Button>
+            <Button className="difficulty-btn" onClick={onClickHandler} >MEDIUM</Button>
+            <Button className="difficulty-btn" onClick={onClickHandler} >HARD</Button>
         </div>
     );
 }
 
-export default Home;
+export default Difficlulty;

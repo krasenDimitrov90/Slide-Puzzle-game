@@ -9,25 +9,33 @@
     flex-wrap: wrap;
 }
 
-.row > div {
-    border: 1px solid gray;
-    width: 120px;
-    height: 120px;
+.buttons {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 50px;
 }
 
-.row > div:hover {
+.buttons > * {
+    flex-grow: 1;
+    background: none;
+    
+    border-radius: 5px;
+    border: none;
+    box-shadow: 1px 1px 7px black;
+}
+
+.reset-btn {
+    margin-right: 10px;
+}
+
+.change-level-btn {
+    margin-left: 10px;
+
+}
+
+.reset-btn:hover,
+.change-level-btn:hover {
     cursor: pointer;
+    background-color: blue;
 }
 
-div.block {
-    background-color: pink;
-}
 
-div.empty {
-    color: none;
-    background-color: none;
-    border: #0b6eb1;
-}

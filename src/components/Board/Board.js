@@ -1,8 +1,9 @@
 import React from 'react';
 
 import './Board.css';
-import Tile from './Tile';
-import WinGame from './WinGame';
+import Tile from '../Tile/Tile';
+import WinGame from '../WinGame/WinGame';
+import Button from '../Button/Button';
 
 import { canMakeAMove, rearrangedThePuzzle, checkIsPuzzlsSolved } from '../../game-logic/helpers';
 
@@ -21,7 +22,16 @@ function Board(props) {
 
     const [puzzleBoard, setPuzzleBoard] = React.useState(props.puzzle.puzzleForm);
     const [coordinates, setCoordinates] = React.useState(props.puzzle.coordinates);
-    const [win, setWin] = React.useState(false);
+
+    const resetBtnHandler = () => {
+        setPuzzleBoard(props.puzzle.puzzleForm);
+        setCoordinates(props.puzzle.coordinates);
+    }
+
+    const changeLevelHandler = () => {
+        props.preparePuzzleHandler({});
+        props.setDifficultyHandler('');
+    }
 
 
     function moveTileHandler(id) {
@@ -47,8 +57,8 @@ function Board(props) {
             let newPuzzleForm = rearrangedThePuzzle(puzzleBoard, id);
 
             if (checkIsPuzzlsSolved(newPuzzleForm, rightOrder[props.difficulty])) {
-                // props.setWinHandler();
-                setWin(true);
+                props.setWinHandler(true);
+                props.preparePuzzleHandler({}); // is for reseting the puzzle
             } else {
                 setPuzzleBoard((oldPuzzle) => {
                     return newPuzzleForm;
@@ -58,11 +68,10 @@ function Board(props) {
     }
 
     return (
-        <div className='board'>
-            <div className='row'>
-                {win
-                    ? <WinGame />
-                    : puzzleBoard.map((tile, idx) =>
+        <>
+            <div className='board'>
+                <div className='row'>
+                    {puzzleBoard.map((tile, idx) =>
                         <Tile
                             key={tile}
                             id={tile}
@@ -71,10 +80,15 @@ function Board(props) {
                             difficulty={props.difficulty}
                             moveTileHandler={moveTileHandler}
                         />)
-                }
+                    }
 
+                </div>
             </div>
-        </div>
+            <div className='buttons' >
+                <Button className="reset-btn" onClick={resetBtnHandler} >Reset</Button>
+                <Button className="change-level-btn" onClick={changeLevelHandler} >Change level</Button>
+            </div>
+        </>
     );
 }
 
