@@ -3,7 +3,6 @@ import { Navigate, Link } from 'react-router-dom';
 
 import './Board.css';
 import Tile from '../Tile/Tile';
-import WinGame from '../WinGame/WinGame';
 import Button from '../Button/Button';
 
 import { canMakeAMove, rearrangedThePuzzle, checkIsPuzzlsSolved } from '../../game-logic/helpers';
@@ -66,17 +65,19 @@ function Board(props) {
         <>
             <div className='board'>
                 <div className='row'>
-                    {win 
+                    {win
                         ? <Navigate to="/win-game" />
-                        : puzzleBoard.map((tile, idx) =>
-                        <Tile
-                            key={tile}
-                            id={tile}
-                            value={tile}
-                            index={idx}
-                            difficulty={props.difficulty}
-                            moveTileHandler={moveTileHandler}
-                        />)
+                        : puzzleBoard === undefined
+                            ? <Navigate to="/" />
+                            : puzzleBoard.map((tile, idx) =>
+                                <Tile
+                                    key={tile}
+                                    id={tile}
+                                    value={tile}
+                                    index={idx}
+                                    difficulty={props.difficulty}
+                                    moveTileHandler={moveTileHandler}
+                                />)
                     }
                 </div>
             </div>

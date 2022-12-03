@@ -2,12 +2,11 @@ import React from "react";
 import {Link} from 'react-router-dom';
 
 import './WinGame.css';
-import Button from "../Button/Button";
 
 function WinGame(props) {
 
     const clickHandler = () => {
-        props.setWinHandler(false);
+        // props.setWinHandler(false);
         props.setDifficultyHandler('');
     }
 

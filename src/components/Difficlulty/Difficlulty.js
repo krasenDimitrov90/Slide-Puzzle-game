@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 import './Difficlulty.css';
 import Puzzle from "../../game-logic/puzzle";
-import Button from "../Button/Button";
 
 const tiles = {
     easy: [

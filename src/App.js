@@ -9,11 +9,6 @@ const App = () => {
 
     const [puzzle, setPuzzle] = React.useState({});
     const [difficulty, setDifficulty] = React.useState('');
-    const [win, setWin] = React.useState(false);
-
-    const setWinHandler = (condition) => {
-        setWin(condition);
-    }
 
     const preparePuzzleHandler = (puzzle) => {
         setPuzzle(puzzle);
@@ -40,7 +35,6 @@ const App = () => {
                     element={< Board
                         puzzle={puzzle}
                         difficulty={difficulty}
-                        setWinHandler={setWinHandler}
                         setDifficultyHandler={setDifficultyHandler}
                         preparePuzzleHandler={preparePuzzleHandler}
                     />}
@@ -49,7 +43,6 @@ const App = () => {
                 </Route>
                 <Route path='/win-game'
                     element={< WinGame
-                        setWinHandler={setWinHandler}
                         setDifficultyHandler={setDifficultyHandler}
                     />}
                 >
