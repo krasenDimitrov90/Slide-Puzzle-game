@@ -17,6 +17,6 @@ export function canMakeAMove(moveCoordinates, currentCoordinates, x, y) {
     return Object.values(moveCoordinates).some(c => c === currentCoordinates[0]);
 }
 
-export function checkIsPuzzlsSolved(puzzle, rightOrder = '123456780') {
+export function checkIsPuzzlsSolved(puzzle, rightOrder) {
     return puzzle.join('') === rightOrder;
 }

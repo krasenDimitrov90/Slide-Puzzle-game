@@ -1,23 +1,40 @@
 import React from 'react';
 
+import Home from './components/Home/Home';
 import Board from './components/Board/Board';
 import WinGame from './components/Board/WinGame';
 
 const App = () => {
 
-    const [win, setWin] = React.useState(false);
+    const [puzzle, setPuzzle] = React.useState({});
+    const [difficulty, setDifficulty] = React.useState('');
 
-    const setWinHandler = () => {
-        setWin(true);
+
+    // const setWinHandler = () => {
+    //     setWin(true);
+    // }
+
+    const preparePuzzleHandler = (puzzle) => {
+        setPuzzle(puzzle);
     }
+
+    const setDifficultyHandler = (difficulty) => {
+        setDifficulty(difficulty)
+    }
+
+    const isPuzzleSet = Object.keys(puzzle).length > 0;
 
     return (
         <>
-            {/* <Demo /> */}
-            {/* {<WinGame />} */}
-            {win
-                ? <WinGame />
-                : <Board setWinHandler={setWinHandler}
+            {!isPuzzleSet &&
+                <Home
+                    preparePuzzleHandler={preparePuzzleHandler}
+                    setDifficultyHandler={setDifficultyHandler}
+                />
+            }
+            {isPuzzleSet &&
+                <Board puzzle={puzzle}
+                    difficulty={difficulty}
                 />
             }
         </>
