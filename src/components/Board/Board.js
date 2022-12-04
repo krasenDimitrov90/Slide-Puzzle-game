@@ -88,7 +88,7 @@ function Board() {
             </div>
             <div className='buttons' >
                 <Button className="reset-btn" onClick={resetBtnHandler} >Reset</Button>
-                <Button className="change-level-btn" onClick={() => navigate()}>Change level</Button>
+                <Button className="change-level-btn" onClick={() => navigate('/difficulty')}>Change level</Button>
             </div>
         </>
     );

@@ -1,9 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-import Button from "../Button/Button";
-
 import './WinGame.css';
+import Button from "../Button/Button";
 
 function WinGame() {
 

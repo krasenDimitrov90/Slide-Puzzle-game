@@ -1,8 +1,8 @@
 import React from "react";
 import { useNavigate } from 'react-router-dom';
 
-import Button from "../Button/Button";
 import './Home.css';
+import Button from "../Button/Button";
 
 export default function Home() {
 

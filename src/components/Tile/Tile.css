@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.tile:hover {
+.tile.block:hover {
     cursor: pointer;
 }
 
