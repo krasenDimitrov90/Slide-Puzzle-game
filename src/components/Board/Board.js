@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navigate, Link } from 'react-router-dom';
+import { PuzzleContext } from '../../contexts/PuzzleContext';
 
 import './Board.css';
 import Tile from '../Tile/Tile';
@@ -17,15 +18,17 @@ const rightOrder = {
 
 const moveCoordinates = {};
 
-function Board(props) {
+function Board() {
 
-    const [puzzleBoard, setPuzzleBoard] = React.useState(props.puzzle.puzzleForm);
-    const [coordinates, setCoordinates] = React.useState(props.puzzle.coordinates);
+    const {puzzle, difficulty} = React.useContext(PuzzleContext);
+
+    const [puzzleBoard, setPuzzleBoard] = React.useState(puzzle.puzzleForm);
+    const [coordinates, setCoordinates] = React.useState(puzzle.coordinates);
     const [win, setWin] = React.useState(false);
 
     const resetBtnHandler = () => {
-        setPuzzleBoard(props.puzzle.puzzleForm);
-        setCoordinates(props.puzzle.coordinates);
+        setPuzzleBoard(puzzle.puzzleForm);
+        setCoordinates(puzzle.coordinates);
     }
 
 
@@ -51,7 +54,7 @@ function Board(props) {
 
             let newPuzzleForm = rearrangedThePuzzle(puzzleBoard, id);
 
-            if (checkIsPuzzlsSolved(newPuzzleForm, rightOrder[props.difficulty])) {
+            if (checkIsPuzzlsSolved(newPuzzleForm, rightOrder[difficulty])) {
                 setWin(true);
             } else {
                 setPuzzleBoard((oldPuzzle) => {
@@ -75,7 +78,7 @@ function Board(props) {
                                     id={tile}
                                     value={tile}
                                     index={idx}
-                                    difficulty={props.difficulty}
+                                    difficulty={difficulty}
                                     moveTileHandler={moveTileHandler}
                                 />)
                     }

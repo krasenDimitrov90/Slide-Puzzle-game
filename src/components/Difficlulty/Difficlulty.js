@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from 'react-router-dom';
+import { PuzzleContext } from "../../contexts/PuzzleContext";
 
 import './Difficlulty.css';
 import Puzzle from "../../game-logic/puzzle";
+
 
 const tiles = {
     easy: [
@@ -27,15 +29,17 @@ const tiles = {
     ],
 }
 
-function Difficlulty({ preparePuzzleHandler, setDifficultyHandler }) {
+function Difficlulty() {
+
+    const {setPuzzle, setDifficulty} = React.useContext(PuzzleContext);
 
     const onClickHandler = (e) => {
         const difficulty = e.target.textContent.toLowerCase();
 
         const puzzle = new Puzzle(tiles[difficulty]);
 
-        preparePuzzleHandler(puzzle);
-        setDifficultyHandler(difficulty);
+        setPuzzle(puzzle);
+        setDifficulty(difficulty);
     };
 
     return (

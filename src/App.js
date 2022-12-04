@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Difficlulty from './components/Difficlulty/Difficlulty';
 import Board from './components/Board/Board';
 import WinGame from './components/WinGame/WinGame';
+import PuzzleProvider from './contexts/PuzzleContext';
 
 const App = () => {
 
@@ -18,37 +19,17 @@ const App = () => {
         setDifficulty(difficulty)
     }
 
-    const isPuzzleSet = Object.keys(puzzle).length > 0;
 
     return (
-        <BrowserRouter>
-            <Routes>
-                <Route path='/'
-                    element={< Difficlulty
-                        setDifficultyHandler={setDifficultyHandler}
-                         preparePuzzleHandler={preparePuzzleHandler}
-                    />}
-                >
+        <PuzzleProvider>
+            <BrowserRouter>
+                <Routes>
 
-                </Route>
-                <Route path='/board'
-                    element={< Board
-                        puzzle={puzzle}
-                        difficulty={difficulty}
-                        setDifficultyHandler={setDifficultyHandler}
-                        preparePuzzleHandler={preparePuzzleHandler}
-                    />}
-                >
+                    <Route path='/' element={< Difficlulty />}> </Route>
+                    <Route path='/board' element={< Board />} ></Route>
+                    <Route path='/win-game' element={< WinGame />} ></Route>
 
-                </Route>
-                <Route path='/win-game'
-                    element={< WinGame
-                        setDifficultyHandler={setDifficultyHandler}
-                    />}
-                >
-
-                </Route>
-                {/* {difficulty === '' &&
+                    {/* {difficulty === '' &&
                 <Difficlulty
                     preparePuzzleHandler={preparePuzzleHandler}
                     setDifficultyHandler={setDifficultyHandler}
@@ -68,8 +49,9 @@ const App = () => {
                     setWinHandler={setWinHandler}
                     setDifficultyHandler={setDifficultyHandler}
                 />} */}
-            </Routes>
-        </BrowserRouter>
+                </Routes>
+            </BrowserRouter>
+        </PuzzleProvider >
     );
 }
 

@@ -1,13 +1,16 @@
 import React from "react";
 import {Link} from 'react-router-dom';
+import { PuzzleContext } from "../../contexts/PuzzleContext";
 
 import './WinGame.css';
 
-function WinGame(props) {
+function WinGame() {
+
+    const {setDifficulty} = React.useContext(PuzzleContext);
 
     const clickHandler = () => {
         // props.setWinHandler(false);
-        props.setDifficultyHandler('');
+        setDifficulty('');
     }
 
     return (
