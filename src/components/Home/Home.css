@@ -1,0 +1,25 @@
+.home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40vw;
+}
+
+
+.play-btn {
+    border-radius: 5px;
+    background: none;
+    margin: 10px;
+    flex: 1;
+    border: none;
+    box-shadow: 1px 1px 7px black;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    padding: 0 30px;
+}
+
+.play-btn:hover {
+    cursor: pointer;
+    background-color: blue;
+}

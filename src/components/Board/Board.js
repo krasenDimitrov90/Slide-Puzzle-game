@@ -71,7 +71,7 @@ function Board() {
                     {win
                         ? <Navigate to="/win-game" />
                         : puzzleBoard === undefined
-                            ? <Navigate to="/" />
+                            ? <Navigate to="/difficulty" />
                             : puzzleBoard.map((tile, idx) =>
                                 <Tile
                                     key={tile}
@@ -86,7 +86,7 @@ function Board() {
             </div>
             <div className='buttons' >
                 <Button className="reset-btn" onClick={resetBtnHandler} >Reset</Button>
-                <Link to="/" className="change-level-btn" >Change level</Link>
+                <Link to="/difficulty" className="change-level-btn" >Change level</Link>
             </div>
         </>
     );
