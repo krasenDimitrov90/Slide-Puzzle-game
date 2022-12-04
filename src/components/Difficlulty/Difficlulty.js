@@ -1,8 +1,9 @@
 import React from "react";
-import { Link } from 'react-router-dom';
-import { PuzzleContext } from "../../contexts/PuzzleContext";
+import { useNavigate } from 'react-router-dom';
 
 import './Difficlulty.css';
+import Button from "../Button/Button";
+import { PuzzleContext } from "../../contexts/PuzzleContext";
 import Puzzle from "../../game-logic/puzzle";
 
 
@@ -32,6 +33,7 @@ const tiles = {
 function Difficlulty() {
 
     const {setPuzzle, setDifficulty} = React.useContext(PuzzleContext);
+    const navigate = useNavigate();
 
     const onClickHandler = (e) => {
         const difficulty = e.target.textContent.toLowerCase();
@@ -40,13 +42,14 @@ function Difficlulty() {
 
         setPuzzle(puzzle);
         setDifficulty(difficulty);
+        navigate('/board')
     };
 
     return (
         <div className="difficulty-btns">
-            <Link to='/board' className="difficulty-btn" onClick={onClickHandler} >EASY</Link>
-            <Link to='/board' className="difficulty-btn" onClick={onClickHandler} >MEDIUM</Link>
-            <Link to='/board' className="difficulty-btn" onClick={onClickHandler} >HARD</Link>
+            <Button className="difficulty-btn" onClick={onClickHandler} >EASY</Button>
+            <Button className="difficulty-btn" onClick={onClickHandler} >MEDIUM</Button>
+            <Button className="difficulty-btn" onClick={onClickHandler} >HARD</Button>
         </div>
     );
 }

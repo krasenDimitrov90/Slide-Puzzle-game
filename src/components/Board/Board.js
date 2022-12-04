@@ -1,5 +1,5 @@
 import React from 'react';
-import { Navigate, Link } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { PuzzleContext } from '../../contexts/PuzzleContext';
 
 import './Board.css';
@@ -19,6 +19,8 @@ const rightOrder = {
 const moveCoordinates = {};
 
 function Board() {
+
+    const navigate = useNavigate();
 
     const {puzzle, difficulty} = React.useContext(PuzzleContext);
 
@@ -86,7 +88,7 @@ function Board() {
             </div>
             <div className='buttons' >
                 <Button className="reset-btn" onClick={resetBtnHandler} >Reset</Button>
-                <Link to="/difficulty" className="change-level-btn" >Change level</Link>
+                <Button className="change-level-btn" onClick={() => navigate()}>Change level</Button>
             </div>
         </>
     );

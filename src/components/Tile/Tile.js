@@ -35,9 +35,6 @@ class Tile extends React.Component {
         return false;
     }
 
-    prepareClasses() {
-
-    }
 
     render() {
         return (

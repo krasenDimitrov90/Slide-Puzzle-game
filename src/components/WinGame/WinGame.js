@@ -1,22 +1,22 @@
 import React from "react";
-import {Link} from 'react-router-dom';
-import { PuzzleContext } from "../../contexts/PuzzleContext";
+import { useNavigate } from "react-router-dom";
+
+import Button from "../Button/Button";
 
 import './WinGame.css';
 
 function WinGame() {
 
-    const {setDifficulty} = React.useContext(PuzzleContext);
+    const navigate = useNavigate();
 
     const clickHandler = () => {
-        // props.setWinHandler(false);
-        setDifficulty('');
+        navigate("/difficulty");
     }
 
     return (
         <div className="win-game">
             <h2 style={{ 'fontSize': '50px' }} >Congrats!</h2>
-            <Link to="/" onClick={clickHandler} className="play-again-btn" >Play again</Link>
+            <Button className='play-again-btn' onClick={clickHandler} >Play again</Button>
         </div>
     );
 }
