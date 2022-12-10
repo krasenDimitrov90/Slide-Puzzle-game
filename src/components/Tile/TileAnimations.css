@@ -1,0 +1,61 @@
+.animation-left {
+    animation: leftanimation 1s forwards;
+}
+
+.animation-right {
+    animation: rightanimation 1s forwards;
+}
+
+.animation-up {
+    animation: upanimation 1s forwards;
+}
+
+.animation-down {
+    animation: downanimation 1s forwards;
+}
+
+
+@keyframes leftanimation {
+    0% {
+        left: 120px;
+        top: 0xp;
+    }
+
+    100% {
+        left: 0px;
+        top: 0px;
+    }
+}
+@keyframes rightanimation {
+    0% {
+        left: -120px;
+        top: 0xp;
+    }
+
+    100% {
+        left: 0px;
+        top: 0px;
+    }
+}
+@keyframes upanimation {
+    0% {
+        left: 0px;
+        top: 120px;
+    }
+
+    100% {
+        left: 0px;
+        top: 0px;
+    }
+}
+@keyframes downanimation {
+    0% {
+        left: 0px;
+        top: -120px;
+    }
+
+    100% {
+        left: 0px;
+        top: 0px;
+    }
+}

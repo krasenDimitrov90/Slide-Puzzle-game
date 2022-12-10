@@ -13,10 +13,14 @@
 
 .tile.block {
     background-color: rgb(243, 170, 239);
+    position: relative;
 }
 
 .tile.empty {
     color: none;
     background-color: none;
     border: #0b6eb1;
+
+    position: relative;
+
 }

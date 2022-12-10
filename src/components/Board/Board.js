@@ -3,10 +3,10 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import { PuzzleContext } from '../../contexts/PuzzleContext';
 
 import './Board.css';
-import Tile from '../Tile/Tile';
+import Tile from '../Tile/Tile-copy';
 import Button from '../Button/Button';
 
-import { canMakeAMove, rearrangedThePuzzle, checkIsPuzzlsSolved } from '../../game-logic/helpers';
+import { findMoveDirection, rearrangedThePuzzle, checkIsPuzzlsSolved } from '../../game-logic/helpers';
 
 
 const rightOrder = {
@@ -16,13 +16,12 @@ const rightOrder = {
 }
 
 
-const moveCoordinates = {};
 
 function Board() {
 
     const navigate = useNavigate();
 
-    const {puzzle, difficulty} = React.useContext(PuzzleContext);
+    const { puzzle, difficulty } = React.useContext(PuzzleContext);
 
     const [puzzleBoard, setPuzzleBoard] = React.useState(puzzle.puzzleForm);
     const [coordinates, setCoordinates] = React.useState(puzzle.coordinates);
@@ -34,14 +33,15 @@ function Board() {
     }
 
 
-    function moveTileHandler(id) {
+    function moveTileHandler(event, id, setDirectionHandler) {
         let blockToMoveCoordinates = coordinates[id];
         let x = Number(blockToMoveCoordinates[0]);
         let y = Number(blockToMoveCoordinates[2]);
 
-        let canMove = canMakeAMove(moveCoordinates, coordinates, x, y);
+        let moveDirection = findMoveDirection(coordinates, x, y);
 
-        if (canMove) {
+        if (moveDirection) {
+
             let newBlockCoordinates = coordinates[0]; // this is the coordinates of the empty block ( 0 )
             let newEmptyBlockCoordinates = blockToMoveCoordinates;
 
@@ -57,12 +57,20 @@ function Board() {
             let newPuzzleForm = rearrangedThePuzzle(puzzleBoard, id);
 
             if (checkIsPuzzlsSolved(newPuzzleForm, rightOrder[difficulty])) {
-                setWin(true);
+                setPuzzleBoard((oldPuzzle) => {
+                    return newPuzzleForm;
+                });
+                setDirectionHandler(moveDirection);
+                setTimeout(() => {
+                    setWin(true);
+                }, 400);
             } else {
                 setPuzzleBoard((oldPuzzle) => {
                     return newPuzzleForm;
                 });
+                setDirectionHandler(moveDirection);
             }
+
         }
     }
 
