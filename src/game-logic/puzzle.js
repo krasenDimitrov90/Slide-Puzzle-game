@@ -11,11 +11,11 @@ export default class Puzzle {
     init() {
         this.shuffleThePuzzle();
 
-        if (!this.checkIsSolveble()) {
-            console.log(this.checkIsSolveble());
+        if (!this.checkIsSolveble(this.puzzleForm)) {
+            console.log(this.checkIsSolveble(this.puzzleForm));
             this.init();
         } else {
-            console.log(this.checkIsSolveble());
+            console.log(this.checkIsSolveble(this.puzzleForm));
             this.setCoordinates();
         }
     }
@@ -27,26 +27,40 @@ export default class Puzzle {
             .map(({ value }) => value)
     }
 
-    checkIsSolveble() {
+    checkIsSolveble(puzzle) {
 
-        // this algorithm is from - https://datawookie.dev/blog/2019/04/sliding-puzzle-solvable/
+        // this algorithm is from - https://stackoverflow.com/questions/34570344/check-if-15-puzzle-is-solvable
         let count = 0;
 
         let tilesCount = this.puzzleForm.length;
+        let gridWidth = Math.sqrt(tilesCount);
+        let row = 0;
+        let blankRow = 0; // the row with the blank tile
 
         for (let i = 0; i <= tilesCount - 1; i++) {
-            for (let j = i + 1; j <= tilesCount; j++) {
-                if (this.puzzleForm[j] && this.puzzleForm[i] && this.puzzleForm[i] > this.puzzleForm[j]) {
+            if (i % gridWidth === 0) {
+                row++;
+            }
+            if (puzzle[i] === 0) { // the blank tile
+                blankRow = row; // save the row on which encountered
+                continue;
+            }
+            for (let j = i + 1; j <= tilesCount - 1; j++) {
+                if (this.puzzleForm[j] !== 0 && this.puzzleForm[i] !== 0 && this.puzzleForm[i] > this.puzzleForm[j]) {
                     count += 1;
                 }
             }
         }
 
-        if (tilesCount % 2 === 0) {
-            return count % 2 !== 0;
+        if (gridWidth % 2 === 0) { // even grid
+            if (blankRow % 2 === 0) { // blank on odd row; counting from bottom
+                return count % 2 === 0;
+            } else { // blank on even row; counting from bottom
+                return count % 2 !== 0;
+            }
+        } else { // odd grid
+            return count % 2 === 0;
         }
-
-        return count % 2 === 0;
     }
 
     setCoordinates() {

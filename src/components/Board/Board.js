@@ -3,7 +3,7 @@ import { useNavigate, Navigate } from 'react-router-dom';
 import { PuzzleContext } from '../../contexts/PuzzleContext';
 
 import './Board.css';
-import Tile from '../Tile/Tile-copy';
+import Tile from '../Tile/Tile';
 import Button from '../Button/Button';
 
 import { findMoveDirection, rearrangedThePuzzle, checkIsPuzzlsSolved } from '../../game-logic/helpers';
@@ -21,7 +21,7 @@ function Board() {
 
     const navigate = useNavigate();
 
-    const { puzzle, difficulty } = React.useContext(PuzzleContext);
+    const { puzzle, difficulty, pixels } = React.useContext(PuzzleContext);
 
     const [puzzleBoard, setPuzzleBoard] = React.useState(puzzle.puzzleForm);
     const [coordinates, setCoordinates] = React.useState(puzzle.coordinates);
@@ -32,6 +32,7 @@ function Board() {
         setCoordinates(puzzle.coordinates);
     }
 
+    const time = pixels / 0.3;
 
     function moveTileHandler(event, id, setDirectionHandler) {
         let blockToMoveCoordinates = coordinates[id];
@@ -63,7 +64,7 @@ function Board() {
                 setDirectionHandler(moveDirection);
                 setTimeout(() => {
                     setWin(true);
-                }, 400);
+                }, time);
             } else {
                 setPuzzleBoard((oldPuzzle) => {
                     return newPuzzleForm;

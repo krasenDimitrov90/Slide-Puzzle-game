@@ -2,6 +2,7 @@ import React from "react";
 
 import './Tile.css';
 import './TileAnimations.css';
+import { animation } from "../../game-logic/helpers";
 
 const styles = {
     easy: {
@@ -18,64 +19,37 @@ const styles = {
     },
 }
 
-class Tile extends React.Component {
+const Tile = (props) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            isEmpty: this.props.value === 0,
-            classes: this.props.value === 0 ? 'tile empty' : 'tile block',
-            animationWillRun: false,
+    const [isEmpty, setIsEmpty] = React.useState(props.value === 0);
+    const [classes, setClasses] = React.useState(props.value === 0 ? 'tile empty' : 'tile block');
+    const [moveDirection, setMoveDirection] = React.useState(null);
+
+    React.useEffect(() => {
+        animation(moveDirection, props.id, props.difficulty);
+
+        return () => {
+            setMoveDirection(null);
         }
+    }, [moveDirection]);
+
+    const setDirectionHandler = (moveDirection) => {
+        setMoveDirection(moveDirection);
     }
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     if (this.props.index !== nextProps.index) {
-    //         return true;
-    //     }
-
-    //     if (this.state.classes !== nextState.classes) {
-    //         return true;
-    //     }
-
-    //     // if (this.state.styles !== nextState.styles) {
-    //     //     return true;
-    //     // }
-
-    //     return false;
-    // }
-
-   
-
-    changeState = (newClass) => {
-        this.setState({
-            ...this.state,
-            classes: this.state.classes += ` animation-${newClass}`,
-        });
-        console.log(this.state.classes);
-        setTimeout(() => {
-            this.setState({
-                ...this.state,
-                classes: this.state.classes.replace(` animation-${newClass}`, ''),
-            });
-        }, 1000);
-    }
-
-
-    render() {
-        console.log('Changed -> ', this.props.value);
-        return (
-            <div
-                style={{...styles[this.props.difficulty], ...this.props.styles}}
-                onClick={(event) => {
-                    this.props.moveTileHandler(event, this.props.id,);
-                }}
-                className={this.state.classes}
-            >
-                {this.state.isEmpty ? '' : this.props.value}
-            </div>
-        );
-    }
+    return (
+        <div
+            style={{ ...styles[props.difficulty] }}
+            id={props.id}
+            onClick={(event) => {
+                props.moveTileHandler(event, props.id, setDirectionHandler);
+            }}
+            className={classes}
+        >
+            {isEmpty ? '' : props.value}
+        </div>
+    );
 }
+
 
 export default Tile;

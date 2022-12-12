@@ -5,6 +5,7 @@ export const PuzzleContext = React.createContext();
 export default function PuzzleProvider({ children }) {
     const [puzzle, setPuzzle] = React.useState({});
     const [difficulty, setDifficulty] = React.useState('');
+    const [pixels, setPixels] = React.useState(120);
 
     const preparePuzzleHandler = (puzzle) => {
         setPuzzle(puzzle);
@@ -14,15 +15,21 @@ export default function PuzzleProvider({ children }) {
         setDifficulty(difficulty)
     }
 
+    const setPixelsHandler = (pixels) => {
+        setPixels(pixels);
+    }
+
     return (
         <PuzzleContext.Provider
             value={{
+                pixels,
                 puzzle,
                 setPuzzle,
                 difficulty,
                 setDifficulty,
                 preparePuzzleHandler,
                 setDifficultyHandler,
+                setPixelsHandler,
             }}
         >
             {children}

@@ -6,6 +6,12 @@ import Button from "../Button/Button";
 import { PuzzleContext } from "../../contexts/PuzzleContext";
 import Puzzle from "../../game-logic/puzzle";
 
+const pixels = {
+    easy: 120,
+    medium: 90,
+    hard: 72,
+};
+
 
 const tiles = {
     easy: [
@@ -18,7 +24,7 @@ const tiles = {
         1, 2, 3, 4,
         5, 6, 7, 8,
         9, 10, 11, 12,
-        13, 14, 15, 0
+        13, 14, 15, 0,
     ],
 
     hard: [
@@ -32,7 +38,7 @@ const tiles = {
 
 function Difficlulty() {
 
-    const {setPuzzle, setDifficulty} = React.useContext(PuzzleContext);
+    const {setPuzzle, setDifficulty, setPixelsHandler} = React.useContext(PuzzleContext);
     const navigate = useNavigate();
 
     const onClickHandler = (e) => {
@@ -42,6 +48,7 @@ function Difficlulty() {
 
         setPuzzle(puzzle);
         setDifficulty(difficulty);
+        setPixelsHandler(pixels[difficulty]);
         navigate('/board')
     };
 

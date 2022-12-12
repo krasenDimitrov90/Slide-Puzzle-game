@@ -43,7 +43,6 @@ export function animation(moveDirection, id, difficulty) {
     const element = document.getElementById(id);
     let start, previousTimeStamp;
     let ID;
-    let done = false;
     let axis = '';
     let pixels;
 
@@ -83,19 +82,14 @@ export function animation(moveDirection, id, difficulty) {
             if (moveDirection === 'left' || moveDirection === 'up') {
                 count = pixels - (0.3 * elapsed);
             } else if (moveDirection === 'right' || moveDirection === 'down') {
-                count = -pixels + (0.3 * elapsed);
+                count = (0.3 * elapsed) - pixels;
             }
             element.style[axis] = `${count}px`;
-            if (count === 0) {
-                done = true;
-            }
         }
 
         if (elapsed <= duration) {
             previousTimeStamp = timestamp;
-            if (!done) {
-                ID = window.requestAnimationFrame(step);
-            }
+            ID = window.requestAnimationFrame(step);
         }
 
         if (elapsed > duration) {
