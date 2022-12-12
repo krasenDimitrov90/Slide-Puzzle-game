@@ -25,7 +25,6 @@ function Board() {
 
     const [puzzleBoard, setPuzzleBoard] = React.useState(puzzle.puzzleForm);
     const [coordinates, setCoordinates] = React.useState(puzzle.coordinates);
-    const [win, setWin] = React.useState(false);
 
     const resetBtnHandler = () => {
         setPuzzleBoard(puzzle.puzzleForm);
@@ -63,7 +62,7 @@ function Board() {
                 });
                 setDirectionHandler(moveDirection);
                 setTimeout(() => {
-                    setWin(true);
+                    navigate('/win-game');
                 }, time);
             } else {
                 setPuzzleBoard((oldPuzzle) => {
@@ -79,9 +78,8 @@ function Board() {
         <>
             <div className='board'>
                 <div className='row'>
-                    {win
-                        ? <Navigate to="/win-game" />
-                        : puzzleBoard === undefined
+                    {
+                        puzzleBoard === undefined
                             ? <Navigate to="/difficulty" />
                             : puzzleBoard.map((tile, idx) =>
                                 <Tile
