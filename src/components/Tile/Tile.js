@@ -1,7 +1,6 @@
 import React from "react";
 
 import './Tile.css';
-import './TileAnimations.css';
 import { animation } from "../../game-logic/helpers";
 
 const styles = {

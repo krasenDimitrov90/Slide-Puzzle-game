@@ -14,10 +14,10 @@ const App = () => {
         <PuzzleProvider>
             <BrowserRouter>
                 <Routes>
-                    <Route path='/' element={< Home />}> </Route>
-                    <Route path='/difficulty' element={< Difficlulty />}> </Route>
-                    <Route path='/board' element={< Board />} ></Route>
-                    <Route path='/win-game' element={< WinGame />} ></Route>
+                    <Route path='/' element={< Home />} />
+                    <Route path='/difficulty' element={< Difficlulty />} />
+                    <Route path='/board' element={< Board />} />
+                    <Route path='/win-game' element={< WinGame />} />
                 </Routes>
             </BrowserRouter>
         </PuzzleProvider>
