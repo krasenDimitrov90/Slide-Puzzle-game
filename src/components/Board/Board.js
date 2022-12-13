@@ -8,15 +8,6 @@ import Button from '../Button/Button';
 
 import { findMoveDirection, rearrangedThePuzzle, checkIsPuzzlsSolved } from '../../game-logic/helpers';
 
-
-const rightOrder = {
-    easy: '123456780',
-    medium: '1234567891011121314150',
-    hard: '1234567891011121314151617181920212223240',
-}
-
-
-
 function Board() {
 
     const navigate = useNavigate();
@@ -56,7 +47,7 @@ function Board() {
 
             let newPuzzleForm = rearrangedThePuzzle(puzzleBoard, id);
 
-            if (checkIsPuzzlsSolved(newPuzzleForm, rightOrder[difficulty])) {
+            if (checkIsPuzzlsSolved(newPuzzleForm, difficulty)) {
                 setPuzzleBoard((oldPuzzle) => {
                     return newPuzzleForm;
                 });

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import './Difficlulty.css';
 import Button from "../Button/Button";
-import { PuzzleContext } from "../../contexts/PuzzleContext";
+import { usePuzzleContext } from "../../contexts/PuzzleContext";
 import Puzzle from "../../game-logic/puzzle";
 
 const pixels = {
@@ -38,7 +38,7 @@ const tiles = {
 
 function Difficlulty() {
 
-    const {setPuzzle, setDifficulty, setPixelsHandler} = React.useContext(PuzzleContext);
+    const {setPuzzle, setDifficulty, setPixelsHandler} = usePuzzleContext();
     const navigate = useNavigate();
 
     const onClickHandler = (e) => {

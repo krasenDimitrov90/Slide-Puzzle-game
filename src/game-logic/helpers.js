@@ -34,8 +34,14 @@ export function findMoveDirection(currentCoordinates, x, y) {
     return false;
 }
 
-export function checkIsPuzzlsSolved(puzzle, rightOrder) {
-    return puzzle.join('') === rightOrder;
+const rightOrder = {
+    easy: '123456780',
+    medium: '1234567891011121314150',
+    hard: '1234567891011121314151617181920212223240',
+}
+
+export function checkIsPuzzlsSolved(puzzle, difficulty) {
+    return puzzle.join('') === rightOrder[difficulty];
 }
 
 

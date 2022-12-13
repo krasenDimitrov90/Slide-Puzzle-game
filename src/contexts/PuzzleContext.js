@@ -2,6 +2,8 @@ import React from "react";
 
 export const PuzzleContext = React.createContext();
 
+export const usePuzzleContext = () => React.useContext(PuzzleContext);
+
 export default function PuzzleProvider({ children }) {
     const [puzzle, setPuzzle] = React.useState({});
     const [difficulty, setDifficulty] = React.useState('');

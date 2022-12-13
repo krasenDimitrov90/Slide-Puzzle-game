@@ -21,8 +21,8 @@ const styles = {
 
 const Tile = (props) => {
 
-    const [isEmpty, setIsEmpty] = React.useState(props.value === 0);
-    const [classes, setClasses] = React.useState(props.value === 0 ? 'tile empty' : 'tile block');
+    const isEmpty = React.useRef(props.value === 0);
+    const classes = React.useRef(props.value === 0 ? 'tile empty' : 'tile block');
     const [moveDirection, setMoveDirection] = React.useState(null);
 
     React.useEffect(() => {
@@ -44,9 +44,9 @@ const Tile = (props) => {
             onClick={(event) => {
                 props.moveTileHandler(event, props.id, setDirectionHandler);
             }}
-            className={classes}
+            className={classes.current}
         >
-            {isEmpty ? '' : props.value}
+            {isEmpty.current ? '' : props.value}
         </div>
     );
 }
