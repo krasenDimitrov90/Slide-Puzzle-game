@@ -1,8 +1,10 @@
+import React from "react";
 import "./Button.css";
 
 function Button(props) {
 
     const classes = 'button ' + (props.className || '');
+    console.log('in button');
     return (
         <button
             className={classes}
@@ -13,4 +15,4 @@ function Button(props) {
     );
 }
 
-export default Button;
+export default React.memo(Button);

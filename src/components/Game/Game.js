@@ -13,6 +13,13 @@ function Game() {
 
     const { puzzle, resetGameHandler } = usePuzzleContext();
 
+    const resetHandler = React.useCallback(() => {
+        resetGameHandler();
+    }, []);
+
+    const navigateHandler = React.useCallback(() => {
+        navigate('/difficulty');
+    }, []);
     
     return (
         <>
@@ -20,11 +27,12 @@ function Game() {
                 <div className='row'>
                     { puzzle && <PuzzleGrid /> }
                     { !puzzle && <Navigate to="/difficulty" /> }
+                    
                 </div>
             </div>
             <div className='buttons' >
-                <Button className="reset-btn" onClick={resetGameHandler} >Reset</Button>
-                <Button className="change-level-btn" onClick={() => navigate('/difficulty')}>Change level</Button>
+                <Button className="reset-btn" onClick={resetHandler} >Reset</Button>
+                <Button className="change-level-btn" onClick={navigateHandler}>Change level</Button>
             </div>
         </>
     );
