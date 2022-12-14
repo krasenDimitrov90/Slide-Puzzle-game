@@ -5,33 +5,33 @@ export const PuzzleContext = React.createContext();
 export const usePuzzleContext = () => React.useContext(PuzzleContext);
 
 export default function PuzzleProvider({ children }) {
-    const [puzzle, setPuzzle] = React.useState({});
+    const [puzzle, setPuzzle] = React.useState(null);
+    const [coordinates, setCoordinates] = React.useState(null);
+
+    const [initPuzzleData, setInitPuzzleData] = React.useState(null);
+
     const [difficulty, setDifficulty] = React.useState('');
     const [pixels, setPixels] = React.useState(120);
 
-    const preparePuzzleHandler = (puzzle) => {
-        setPuzzle(puzzle);
-    }
-
-    const setDifficultyHandler = (difficulty) => {
-        setDifficulty(difficulty)
-    }
-
-    const setPixelsHandler = (pixels) => {
-        setPixels(pixels);
+    const resetGameHandler = () => {
+        setPuzzle(initPuzzleData.puzzleForm);
+        setCoordinates(initPuzzleData.coordinates);
     }
 
     return (
         <PuzzleContext.Provider
             value={{
                 pixels,
-                puzzle,
-                setPuzzle,
+                setPixels,
                 difficulty,
                 setDifficulty,
-                preparePuzzleHandler,
-                setDifficultyHandler,
-                setPixelsHandler,
+                puzzle,
+                setPuzzle,
+                coordinates,
+                setCoordinates, 
+                initPuzzleData, 
+                setInitPuzzleData,
+                resetGameHandler,
             }}
         >
             {children}

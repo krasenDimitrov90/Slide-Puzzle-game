@@ -38,7 +38,7 @@ const tiles = {
 
 function Difficlulty() {
 
-    const {setPuzzle, setDifficulty, setPixelsHandler} = usePuzzleContext();
+    const {setPuzzle, setInitPuzzleData, setCoordinates, setDifficulty, setPixels} = usePuzzleContext();
     const navigate = useNavigate();
 
     const onClickHandler = (e) => {
@@ -46,9 +46,13 @@ function Difficlulty() {
 
         const puzzle = new Puzzle(tiles[difficulty]);
 
-        setPuzzle(puzzle);
+        setInitPuzzleData(puzzle);
+
+        setPuzzle(puzzle.puzzleForm);
+        setCoordinates(puzzle.coordinates); 
+        
         setDifficulty(difficulty);
-        setPixelsHandler(pixels[difficulty]);
+        setPixels(pixels[difficulty]);
         navigate('/board')
     };
 

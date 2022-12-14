@@ -1,11 +1,19 @@
+
 .difficulty-btns {
     display: flex;
     width: 40vw;
 }
+
+@media only screen and (max-width: 600px) {
+    .difficulty-btns {
+        display: flex;
+        width: 380px;
+    }
+}
+
 
 .difficulty-btn {
     margin: 10px;
     flex: 1;
     padding: 0;
 }
-
