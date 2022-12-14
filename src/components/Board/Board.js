@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
-import { PuzzleContext } from '../../contexts/PuzzleContext';
+import {usePuzzleContext } from '../../contexts/PuzzleContext';
 
 import './Board.css';
 import Tile from '../Tile/Tile';
@@ -12,7 +12,7 @@ function Board() {
 
     const navigate = useNavigate();
 
-    const { puzzle, difficulty, pixels } = React.useContext(PuzzleContext);
+    const { puzzle, difficulty, pixels } = usePuzzleContext();
 
     const [puzzleBoard, setPuzzleBoard] = React.useState(puzzle.puzzleForm);
     const [coordinates, setCoordinates] = React.useState(puzzle.coordinates);
