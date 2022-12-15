@@ -12,8 +12,9 @@
 }
 
 .tile.block {
-    background-color: rgb(243, 170, 239);
+    background-color: rgb(243, 211, 170);
     position: relative;
+    color: #050100;
 }
 
 .tile.empty {

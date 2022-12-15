@@ -5,18 +5,18 @@ import PuzzleProvider from './contexts/PuzzleContext';
 
 import Home from './components/Home/Home';
 import Difficlulty from './components/Difficlulty/Difficlulty';
-import Game from './components/Game/Game';
+import GamePlay from './components/GamePlay/GamePlay';
 import WinGame from './components/WinGame/WinGame';
 
 const App = () => {
-    
+
     return (
         <PuzzleProvider>
             <BrowserRouter>
                 <Routes>
                     <Route path='/' element={< Home />} />
                     <Route path='/difficulty' element={< Difficlulty />} />
-                    <Route path='/board' element={< Game />} />
+                    <Route path='/game-play' element={< GamePlay />} />
                     <Route path='/win-game' element={< WinGame />} />
                 </Routes>
             </BrowserRouter>

@@ -53,7 +53,8 @@ function Difficlulty() {
         
         setDifficulty(difficulty);
         setPixels(pixels[difficulty]);
-        navigate('/board')
+        navigate('/game-play');
+
     };
 
     return (

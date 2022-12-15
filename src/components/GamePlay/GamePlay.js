@@ -2,16 +2,16 @@ import React from 'react';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { usePuzzleContext } from '../../contexts/PuzzleContext';
 
-import './Game.css';
+import './GamePlay.css';
 import Button from '../Button/Button';
 
 import PuzzleGrid from '../PuzzleGrid/PuzzleGrid';
 
-function Game() {
+function GamePlay() {
 
     const navigate = useNavigate();
 
-    const { puzzle, resetGameHandler } = usePuzzleContext();
+    const { puzzle, resetGameHandler, isLoading, setIsloading } = usePuzzleContext();
 
     const resetHandler = React.useCallback(() => {
         resetGameHandler();
@@ -20,14 +20,14 @@ function Game() {
     const navigateHandler = React.useCallback(() => {
         navigate('/difficulty');
     }, []);
-    
+
     return (
         <>
             <div className='grid'>
                 <div className='row'>
-                    { puzzle && <PuzzleGrid /> }
-                    { !puzzle && <Navigate to="/difficulty" /> }
-                    
+                    {puzzle && <PuzzleGrid />}
+                    {!puzzle &&  <Navigate to="/difficulty" />}
+
                 </div>
             </div>
             <div className='buttons' >
@@ -38,4 +38,4 @@ function Game() {
     );
 }
 
-export default Game;
+export default GamePlay;

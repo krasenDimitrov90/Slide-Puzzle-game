@@ -14,7 +14,7 @@ function WinGame() {
 
     return (
         <div className="win-game">
-            <h2 style={{ 'fontSize': '50px' }} >Congrats!</h2>
+            <h2  className="animate" style={{ 'fontSize': '50px' }} >Congrats!</h2>
             <Button className='play-again-btn' onClick={clickHandler} >Play again</Button>
         </div>
     );

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { usePuzzleContext } from "../../contexts/PuzzleContext";
+// import { usePuzzleContext } from "../../contexts/PuzzleContext";
 
 import './Tile.css';
 import { animation } from "../../game-logic/helpers";
@@ -9,14 +9,17 @@ const styles = {
     easy: {
         width: '120px',
         height: '120px',
+        "font-size": "100px",
     },
     medium: {
         width: '90px',
         height: '90px',
+        "font-size": "65px",
     },
     hard: {
         width: '72px',
         height: '72px',
+        "font-size": "45px",
     },
 }
 

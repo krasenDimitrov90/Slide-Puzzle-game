@@ -12,44 +12,41 @@ function PuzzleGrid(props) {
 
     const { puzzle, coordinates, setPuzzle, setCoordinates, difficulty, pixels } = usePuzzleContext();
 
-    const time = pixels / 0.3;
+    const time = pixels / 0.3; // the time needed for a tile to be moved
 
     const moveTileHandler = (event, id, setDirectionHandler) => {
-        let blockToMoveCoordinates = coordinates[id];
-        let x = Number(blockToMoveCoordinates[0]);
-        let y = Number(blockToMoveCoordinates[2]);
+        let tileToMoveCoordinates = coordinates[id];
+        let x = Number(tileToMoveCoordinates[0]);
+        let y = Number(tileToMoveCoordinates[2]);
 
         let moveDirection = findMoveDirection(coordinates, x, y);
 
         if (moveDirection) {
 
-            let newBlockCoordinates = coordinates[0]; // this is the coordinates of the empty block ( 0 )
-            let newEmptyBlockCoordinates = blockToMoveCoordinates;
+            let newTileCoordinates = coordinates[0]; // this is the coordinates of the empty block ( 0 )
+            let newEmptyTileCoordinates = tileToMoveCoordinates;
 
             setCoordinates((oldCoordinates) => {
                 let newCoordinates = {
                     ...oldCoordinates,
-                    [id]: newBlockCoordinates,
-                    0: newEmptyBlockCoordinates,
+                    [id]: newTileCoordinates,
+                    0: newEmptyTileCoordinates,
                 }
                 return newCoordinates;
             });
 
             let newPuzzleForm = rearrangedThePuzzle(puzzle, id);
+            setDirectionHandler(moveDirection);
 
             if (checkIsPuzzlsSolved(newPuzzleForm, difficulty)) {
-                setPuzzle((oldPuzzle) => {
-                    return newPuzzleForm;
-                });
-                setDirectionHandler(moveDirection);
+                setPuzzle(newPuzzleForm);
+
                 setTimeout(() => {
                     navigate('/win-game');
                 }, time);
+
             } else {
-                setPuzzle((oldPuzzle) => {
-                    return newPuzzleForm;
-                });
-                setDirectionHandler(moveDirection);
+                setPuzzle(newPuzzleForm);
             }
 
         }
