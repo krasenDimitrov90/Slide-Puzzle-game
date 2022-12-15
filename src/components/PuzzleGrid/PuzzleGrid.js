@@ -1,7 +1,7 @@
 import React from "react";
+import Tile from "./Tile";
 import { useNavigate } from "react-router-dom";
 import { usePuzzleContext } from "../../contexts/PuzzleContext";
-import Tile from "./Tile";
 import { findMoveDirection, rearrangedThePuzzle, checkIsPuzzlsSolved } from '../../game-logic/helpers';
 
 
@@ -61,7 +61,6 @@ function PuzzleGrid(props) {
             } else {
                 setPuzzle(newPuzzleForm);
             }
-
         }
     }
 

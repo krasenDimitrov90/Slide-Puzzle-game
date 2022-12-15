@@ -65,7 +65,7 @@ class Tile extends React.Component {
                 style={{ ...styles[this.props.difficulty] }}
                 id={this.props.id}
                 onClick={this.onClickHandler}
-                className={this.state.classes}
+                className={this.state.classes + " prevent-select"}
             >
                 {this.state.isEmpty ? '' : this.props.value}
             </div>

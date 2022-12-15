@@ -10,12 +10,12 @@ const Timer = () => {
 
     React.useEffect(() => {
         let time;
+
         if (isTimerRunnig) {
             time = setTimeout(() => {
                 setTimer((oldTime) => oldTime + 1);
             }, 1000);
         }
-
         return () => {
             clearTimeout(time);
         }
