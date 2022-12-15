@@ -6,14 +6,17 @@ import './GamePlay.css';
 import Button from '../Button/Button';
 
 import PuzzleGrid from '../PuzzleGrid/PuzzleGrid';
+import Timer from '../Timer/Timer';
 
 function GamePlay() {
 
     const navigate = useNavigate();
 
-    const { puzzle, resetGameHandler, isLoading, setIsloading } = usePuzzleContext();
+    const { puzzle, resetGameHandler, setTimer, setIsTimerRunnig} = usePuzzleContext();
 
     const resetHandler = React.useCallback(() => {
+        setIsTimerRunnig(false);
+        setTimer(0);
         resetGameHandler();
     }, []);
 
@@ -23,6 +26,7 @@ function GamePlay() {
 
     return (
         <>
+            <Timer />
             <div className='grid'>
                 <div className='row'>
                     {puzzle && <PuzzleGrid />}

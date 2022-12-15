@@ -51,15 +51,20 @@ class Tile extends React.Component {
         this.setState({ moveDirection: moveDirection });
     }
 
+    onClickHandler = (event) => {
+        if (!this.props.isTimerRunnig) {
+            this.props.setIsTimerRunnig(true);
+        }
+        this.props.moveTileHandler(event, this.props.id, this.setDirectionHandler)
+    }
+
     render() {
         console.log(this.props.value, this.state);
         return (
             <div
                 style={{ ...styles[this.props.difficulty] }}
                 id={this.props.id}
-                onClick={(event) => {
-                    this.props.moveTileHandler(event, this.props.id, this.setDirectionHandler.bind(this));
-                }}
+                onClick={this.onClickHandler}
                 className={this.state.classes}
             >
                 {this.state.isEmpty ? '' : this.props.value}

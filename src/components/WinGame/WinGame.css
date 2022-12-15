@@ -4,12 +4,19 @@
     flex-direction: column;
 }
 
+.best-time {
+  font-family: 'Zen Dots', cursive;
+}
+.best-time > * {
+  font-family: 'Zen Dots', cursive;
+}
+
 .play-again-btn {
     padding: 5px 20px;
     margin-top: 20px;
 }
 
-.animate {
+.win-animate {
     animation: rotate 1.5s linear forwards;
  }
 
@@ -34,6 +41,6 @@
       transform: scale(1.2);
     }
     100% {
-      font-size: 80px;
+      font-size: 70px;
     }
   }
