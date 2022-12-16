@@ -52,8 +52,8 @@ class Tile extends React.Component {
     }
 
     onClickHandler = (event) => {
-        if (!this.props.isTimerRunnig) {
-            this.props.setIsTimerRunnig(true);
+        if (!this.props.isRunnig) {
+            this.props.startTimer();
         }
         this.props.moveTileHandler(event, this.props.id, this.setDirectionHandler)
     }

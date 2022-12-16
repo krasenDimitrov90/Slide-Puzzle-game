@@ -12,15 +12,17 @@ function GamePlay() {
 
     const navigate = useNavigate();
 
-    const { puzzle, resetGameHandler, setTimer, setIsTimerRunnig} = usePuzzleContext();
+    const { puzzle, resetGameHandler, resetTimer, stopTimer} = usePuzzleContext();
 
     const resetHandler = React.useCallback(() => {
-        setIsTimerRunnig(false);
-        setTimer(0);
+        stopTimer();
+        resetTimer();
         resetGameHandler();
     }, []);
 
     const navigateHandler = React.useCallback(() => {
+        stopTimer();
+        resetTimer();
         navigate('/difficulty');
     }, []);
 

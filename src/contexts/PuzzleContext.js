@@ -1,4 +1,5 @@
 import React from "react";
+import useTimer from "../hooks/useTimer";
 
 export const PuzzleContext = React.createContext();
 export const usePuzzleContext = () => React.useContext(PuzzleContext);
@@ -14,30 +15,24 @@ export default function PuzzleProvider({ children }) {
     const [difficulty, setDifficulty] = React.useState('');
     const [pixels, setPixels] = React.useState(120);
 
-    const [timer, setTimer] = React.useState(0);
-    const [isTimerRunnig, setIsTimerRunnig] = React.useState(false);
-
     const [bestTime, setBestTime] = React.useState('');
 
+    const { minutes,
+        seconds,
+        isTimerRunnig,
+        startTimer,
+        stopTimer,
+        resetTimer, } = useTimer();
+
     const bestTimeSeter = (time) => {
-        let minutes, seconds = '';
-        minutes = Math.floor(time / 60);
-
-        if (minutes === 0) {
-            seconds = time;
-        } else {
-            seconds = time - (minutes * 60);
-        }
-
-        minutes = minutes.toString().length === 1 ? '0' + minutes.toString() : minutes;
-        seconds = seconds.toString().length === 1 ? '0' + seconds : seconds;
-
-        setBestTime(`${minutes} : ${seconds}`)
+        setBestTime(`${minutes} : ${seconds}`);
+        resetTimer();
     };
+   
 
     const resetGameHandler = () => {
-        setTimer(0);
-        setIsTimerRunnig(false);
+        resetTimer(0);
+        stopTimer(false);
         setPuzzle(initPuzzleData.puzzleForm);
         setCoordinates(initPuzzleData.coordinates);
     }
@@ -54,14 +49,17 @@ export default function PuzzleProvider({ children }) {
                 coordinates,
                 setCoordinates,
                 initPuzzleData,
-                timer,
-                setTimer,
                 bestTime,
                 bestTimeSeter,
-                isTimerRunnig,
-                setIsTimerRunnig,
                 setInitPuzzleData,
                 resetGameHandler,
+
+                minutes,
+                seconds,
+                isTimerRunnig,
+                startTimer,
+                stopTimer,
+                resetTimer,
             }}
         >
             {children}

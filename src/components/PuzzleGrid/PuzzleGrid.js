@@ -16,11 +16,11 @@ function PuzzleGrid(props) {
         setCoordinates,
         difficulty,
         pixels,
-        timer,
-        setTimer,
         bestTimeSeter,
+    
         isTimerRunnig,
-        setIsTimerRunnig } = usePuzzleContext();
+        startTimer,
+        stopTimer,} = usePuzzleContext();
 
     const time = pixels / 0.3; // the time needed for a tile to be moved
 
@@ -52,9 +52,8 @@ function PuzzleGrid(props) {
                 setPuzzle(newPuzzleForm);
 
                 setTimeout(() => {
-                    bestTimeSeter(timer);
-                    setIsTimerRunnig(false);
-                    setTimer(0);
+                    stopTimer();
+                    bestTimeSeter();
                     navigate('/win-game');
                 }, time);
 
@@ -72,7 +71,7 @@ function PuzzleGrid(props) {
                 value={tile}
                 index={idx}
                 difficulty={difficulty}
-                setIsTimerRunnig={setIsTimerRunnig}
+                startTimer={startTimer}
                 isTimerRunnig={isTimerRunnig}
                 moveTileHandler={moveTileHandler}
             />)
