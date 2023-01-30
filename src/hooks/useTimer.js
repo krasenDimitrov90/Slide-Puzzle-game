@@ -8,7 +8,7 @@ const useTimer = () => {
     const stopTimer = () => setIsTimerRunnig(false);
     const resetTimer = () => setTimer(0);
 
-    let minutes, seconds = '';
+    let minutes, seconds = 0;
 
     React.useEffect(() => {
         let time;
